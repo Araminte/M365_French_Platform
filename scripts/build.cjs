@@ -6,7 +6,7 @@ const path = require('node:path');
 const root = path.resolve(__dirname, '..');
 const output = path.join(root, 'dist');
 const files = [
-  'index.html', 'styles.css', 'data.js', 'app.js',
+  'index.html', 'styles.css', 'data.js', 'icons.js', 'app.js',
   'contoso-sharepoint/index.html', 'contoso-sharepoint/style.css',
   'contoso-sharepoint/app.js', 'contoso-sharepoint/office-preview.js',
   'contoso-sharepoint/demo-documents.js', 'contoso-sharepoint/document-tree.js',
