@@ -1,0 +1,15 @@
+{
+  "name": "simulateur-m365-local",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Simulateur local de démonstration Microsoft 365 et SharePoint",
+  "scripts": {
+    "dev": "node scripts/dev-server.cjs",
+    "build": "node scripts/build.cjs",
+    "test:delivery": "node tests/static-delivery.js",
+    "test:http": "node tests/local-http.js"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

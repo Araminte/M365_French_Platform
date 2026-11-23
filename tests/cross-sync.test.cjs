@@ -1,0 +1,23 @@
+'use strict';
+const fs = require('node:fs');
+const path = require('node:path');
+const smoke = fs.readFileSync(path.join(__dirname, 'smoke.js'), 'utf8');
+const harness = smoke.slice(0, smoke.indexOf("for (const route of ['m365/home'"));
+if (!harness.includes('function submit(')) throw new Error('Harnais de test introuvable');
+new Function('require', '__dirname', harness + `
+  const seed = {window:{}};
+  vm.runInNewContext(fs.readFileSync(path.join(root,'data.js'),'utf8'), seed);
+  const data = seed.window.LAB_DATA.initial;
+  data.premium='p1';
+  data.crossSyncConfigurations=[{id:'sync-test',name:'Test fictif',tenantId:'12345678-1234-1234-1234-123456789abc',scope:'assigned',users:['u01'],enabled:true}];
+  stored=JSON.stringify(data);
+  const local=launch('entra/cross-sync');
+  click(local,'cross-sync-open','sync-test');
+  click(local,'open-modal','cross-sync-edit:sync-test');
+  submit(local,'form-cross-sync-edit',{id:'sync-test',tenantId:data.crossSyncConfigurations[0].tenantId,scope:'assigned'});
+  assert.match(local.elements['form-error'].textContent,/au moins un utilisateur/);
+  assert.deepEqual(JSON.parse(stored).crossSyncConfigurations[0].users,['u01']);
+  submit(local,'form-cross-sync-edit',{id:'sync-test',tenantId:data.crossSyncConfigurations[0].tenantId,scope:'all'});
+  assert.equal(JSON.parse(stored).crossSyncConfigurations[0].scope,'all');
+  console.log('OK : configuration active conserve une affectation valide');
+`)(require, __dirname);

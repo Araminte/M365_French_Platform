@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40">
+  <defs><linearGradient id="gold" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#ffd452"/><stop offset=".5" stop-color="#ffa000"/><stop offset="1" stop-color="#e66d00"/></linearGradient></defs>
+  <path fill="#ec8500" d="M11 6H5v4c0 6 3 9 9 10l1-3c-4-.4-6-2.4-6-7V9h2zm18 0h6v4c0 6-3 9-9 10l-1-3c4-.4 6-2.4 6-7V9h-2z"/>
+  <path fill="url(#gold)" d="M10 3h20v9c0 8-4 13-10 13S10 20 10 12z"/>
+  <path fill="#ffc133" d="M13 5h5v15c-3-2-5-5-5-9z" opacity=".8"/>
+  <path fill="#e87500" d="M18 24h4v7h5v4H13v-4h5z"/><path fill="#ffa300" d="M11 35h18v3H11z"/>
+</svg>
